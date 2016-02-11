@@ -50,7 +50,7 @@ if(c!=null){
 	}
 
 else{
-	//CHECK IF GROUP EXISTS wiz. FILE OPERATION
+	//CHECK IF GROUP EXISTS wiz. FILE OPERATION 
 	//if(true)
 	Cookie cs=new Cookie("groupId",groupId);
 	response.addCookie(cs);
