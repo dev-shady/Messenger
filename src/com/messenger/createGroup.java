@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/createGroup")
 public class createGroup extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+	fileManagement f;
    
     public createGroup() {
         super();
@@ -28,7 +28,10 @@ public class createGroup extends HttpServlet {
 	
 		String groupName=request.getParameter("groupName");
 		String groupId=request.getParameter("groupId");
-		group g1=new group(groupId,groupName);  //FILE OPERATION HERE
+		f=new fileManagement();
+		
+		group g1=new group(groupId,groupName); 
+		f.fWrite(groupId);    //FILE OPERATION HERE
 		Cookie c=new Cookie("groupId", groupId);
 		c.setMaxAge(60*60*2);
 		response.addCookie(c);

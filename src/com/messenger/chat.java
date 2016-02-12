@@ -18,12 +18,14 @@ public class chat extends HttpServlet {
        
    group g1;
    boolean status=false;
+  
 	
     @Override
 	public void init(ServletConfig config) throws ServletException {
 		
 		super.init(config);
 		g1=new group();
+		
 	}
 
 
@@ -46,9 +48,5 @@ public class chat extends HttpServlet {
 	}
 
 	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
-
+	
 }

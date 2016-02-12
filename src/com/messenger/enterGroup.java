@@ -24,6 +24,7 @@ public class enterGroup extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String groupId=request.getParameter("groupId");
+		fileManagement f=new fileManagement();
 		Cookie[] c=request.getCookies();
 if(c!=null){
 			
@@ -50,16 +51,17 @@ if(c!=null){
 	}
 
 else{
-	//CHECK IF GROUP EXISTS wiz. FILE OPERATION 
-	//if(true)
+	
+	if(f.fRead(groupId)){
 	Cookie cs=new Cookie("groupId",groupId);
 	response.addCookie(cs);
 	RequestDispatcher rd=request.getRequestDispatcher("chat");
 	rd.forward(request,response);
-	//
-	//if(false)
+	}
+	else{
 	System.out.println("no group with groupId "+groupId+" exists");
 	response.sendRedirect("home.jsp");
+	}
 }
 
 
