@@ -5,7 +5,7 @@ import java.util.LinkedList;
 public class group  {
 
 	
-	String id,groupName;
+	private String id,groupName;
 	LinkedList<String> messages;
 	LinkedList<String> members;
    
@@ -25,6 +25,42 @@ public class group  {
     	groupName=name;
     	
     }
+
+
+
+	public String getId() {
+		return id;
+	}
+
+
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+
+
+	public LinkedList<String> getMessages() {
+		return messages;
+	}
+
+
+
+	public void addMessage(String message) {
+		messages.add(message);
+	}
+
+
+
+	public LinkedList<String> getMembers() {
+		return members;
+	}
+
+
+
+	public void addMember(String member) {
+		members.add(member);
+	}
 	
 	
 
