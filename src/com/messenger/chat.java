@@ -10,21 +10,22 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 
 @WebServlet("/chat")
 public class chat extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-   group g1;
-   boolean status=false;
+   //group g1;
+  // boolean status=false;
   
 	
     @Override
 	public void init(ServletConfig config) throws ServletException {
 		
 		super.init(config);
-		g1=new group();
+		//g1=new group();
 		
 	}
 
@@ -38,8 +39,14 @@ public class chat extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
 		String msg=request.getParameter("msg");
-		g1.messages.add(msg);
-		request.setAttribute("data",g1.messages);
+		System.out.println("in SendMessage");
+		GroupList glist=(GroupList)getServletContext().getAttribute("glist");
+		HttpSession session=request.getSession();
+		String gname=(String)session.getAttribute("gname");
+		group grp=(group)glist.getGroup(gname);
+		//LinkedList<String> msgs=grp.getMessages();
+		String uname=(String)session.getAttribute("uname");
+		grp.addMessage(uname+": "+msg);
 		RequestDispatcher rd=request.getRequestDispatcher("chat.jsp");
 		rd.forward(request,response);
 		
