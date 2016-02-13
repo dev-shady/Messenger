@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.*" %>
+    pageEncoding="UTF-8" import="java.util.*" import="com.messenger.GroupList,com.messenger.group,java.util.LinkedList,java.util.ListIterator"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -8,14 +8,15 @@
 </head>
 <body>
 <%
-LinkedList<String> l=(LinkedList<String>)request.getAttribute("data");
-if(l!=null){
-	 Iterator<String> i=l.iterator();
-	while(i.hasNext()){
-		out.println(i.next()+"<br>");
-	} 
+GroupList glist=(GroupList)application.getAttribute("glist");
+String gname=(String)session.getAttribute("gname");
+group grp=(group)glist.getGroup(gname);
+LinkedList<String> msgs=grp.getMessages();
+String uname=(String)session.getAttribute("uname");
+ListIterator<String> it=msgs.listIterator();
+while(it.hasNext()) {
+	out.write(it.next()+"<br>\n");
 }
-
 %>
 
 <form action="chat">
